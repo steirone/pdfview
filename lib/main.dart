@@ -49,7 +49,42 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter PDF View'),
+      home: const MyWidget(),
+    );
+  }
+}
+
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+
+      // Navigate to the next page
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyHomePage(title: 'Flutter PDF View')),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: Text("Loading"),
+        ),
+        body: Center(
+          child: CircularProgressIndicator()
+        ),
     );
   }
 }
